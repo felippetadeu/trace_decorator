@@ -14,7 +14,7 @@ class Teste:
         print(self.c)
 
 
-x = Teste(1)
+x = Teste()
 x.a()
 x.b()
 x.d()

@@ -1,4 +1,5 @@
 import builtins
+import inspect
 
 LIST_OF_DEFAULT_METHODS = [
     '__annotations__', 
@@ -6,6 +7,14 @@ LIST_OF_DEFAULT_METHODS = [
     '__dict__', 
     '__module__'
 ]
+
+def __getattribute__(self, name: str):
+        if name == "__class__":
+            return object.__getattribute__(self, name)
+        class_methods = set(dir(self.__class__)) - set(dir(object)) - set(LIST_OF_DEFAULT_METHODS)
+        if name in class_methods:
+            print(f'fui chamado {name}')
+        return object.__getattribute__(self, name)
 
 def __create_fn(name, body, *, globals=None, locals=None):
     # Note that we mutate locals when exec() is called.  Caller
@@ -25,13 +34,7 @@ def __create_fn(name, body, *, globals=None, locals=None):
     return ns['__create_fn__'](**locals)
 
 def __set_new_attribute(cls=None):
-    class_methods = set(dir(cls)) - set(dir(object)) - set(LIST_OF_DEFAULT_METHODS)
-    list_of_user_defineds = "['" + "','".join(class_methods) + "']"
-    body = ["def __getattribute__(self, name: str):"]
-    body.append("  import inspect")
-    body.append(f"  if name in {list_of_user_defineds}:")
-    body.append("    print(f'fui chamado {name}')")
-    body.append("  return object.__getattribute__(self, name)")
+    body = inspect.getsource(__getattribute__).split('\n')
     fn = __create_fn("__getattribute__", body)
     setattr(cls, "__getattribute__", fn)
 
