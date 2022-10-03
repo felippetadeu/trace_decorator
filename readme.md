@@ -1,3 +1,5 @@
+Versão do Python utilizada 3.10
+
 Esse projeto foi criado com o objetivo de testar e aprender sobre criação de comportamentos em runtime
 
 
