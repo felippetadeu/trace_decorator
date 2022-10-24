@@ -48,8 +48,8 @@ def __create_fn(name, body, *, globals=None, locals=None):
     return ns['__create_fn__'](**locals)
 
 def __set_new_attribute(cls=None):
-    body = inspect.getsource(__getattribute__).split('\n')
-    fn = __create_fn("__getattribute__", body)
+    #body = inspect.getsource(__getattribute__).split('\n')
+    #fn = __create_fn("__getattribute__", body)
     setattr(cls, "__getattribute__", __getattribute__)
 
 def __process_class(cls=None):

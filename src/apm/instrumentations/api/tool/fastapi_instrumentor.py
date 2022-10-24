@@ -1,7 +1,7 @@
 import opentelemetry.instrumentation.fastapi as otel_fastapi
 from fastapi import FastAPI
 
-from src.apm.instrumentations.api.base_api_instrumentor import BaseAPIInstrumentor
+from src.apm.instrumentations.api.tool.base_api_instrumentor import BaseAPIInstrumentor
 
 class FastAPIInstrumentor(BaseAPIInstrumentor):
     

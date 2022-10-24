@@ -5,7 +5,7 @@ class BaseAPIInstrumentor:
 
     _instrumentor = None
 
-    def instrument_app(self):
+    def instrument_app(self, app):
         raise NotImplementedError()
 
     def create_instrumentor(self):

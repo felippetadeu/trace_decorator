@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from src.apm.instrumentations.api.base_api_instrumentor import BaseAPIInstrumentor
-from src.apm.instrumentations.api.fastapi_instrumentor import FastAPIInstrumentor
+from src.apm.instrumentations.api.tool.base_api_instrumentor import BaseAPIInstrumentor
+from src.apm.instrumentations.api.tool.fastapi_instrumentor import FastAPIInstrumentor
 from src.api.type import Type as APITypesEnum
 
 @dataclass

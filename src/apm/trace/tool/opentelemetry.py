@@ -11,13 +11,6 @@ class OpenTelemetry(BaseTrace):
             Configuration.start_apm()
 
     def start_trace(self):
-
-        # Create a BatchSpanProcessor and add the exporter to it
-        #span_processor = BatchSpanProcessor(jaeger_exporter)
-
-        # add to the tracer
-        #trace.get_tracer_provider().add_span_processor(span_processor)
-
         conf:ConfigOpenTelemetry = Configuration.apm_config.config
         with conf.tracer.start_as_current_span(self.name):
             return self.attr
